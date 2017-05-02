@@ -47,6 +47,7 @@ function loopdown(postsCount) {
 
 		request
 			.get(urlp, function(err, res, body) {
+				console.log(i);
 				// console.log(err);
 				// console.log(res);
 				//console.log(body);
@@ -55,3 +56,31 @@ function loopdown(postsCount) {
 		console.log(`${dir}/${i}.json`)
 	}
 }
+
+// function timeout(){
+// 	for(var i=0;i<5;i++){
+// 		setTimeout( (function(i){return ()=>console.log(i) })(i),1000*i);
+// 	}
+// }
+//匿名函数，立即执行 
+// timeout();//这里当然是打印出来5个5
+
+
+/*
+从下面这个打印日志来看，其实还是异步的。pipe()保证了优先执行pipe()内的方法，而这里面是pipe。
+等到所有的pipe全部执行完毕之后，再执行console.log(i)，此时这个i=6，我们可以比照setTimeout来看。
+study-fe/0.json
+study-fe/1.json
+study-fe/2.json
+study-fe/3.json
+study-fe/4.json
+study-fe/5.json
+6
+6
+6
+6
+6
+6
+
+
+*/
